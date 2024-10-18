@@ -16,12 +16,11 @@
 | 原材料A  | 4  | 0  | 16 kg |
 | 原材料B  | 0  | 4  | 12kg  |
 <br>
+建议自己写出他的数学模型，非常简单...
 <br>
-建议自己写出他的数学模型，非常简单...<br>
 $$
-\text{max} z = 2x_1 + 3x_2
+\text{max } z = 2x_1 + 3x_2
 $$
-
 Subject to:
 
 $$
@@ -41,8 +40,7 @@ s.t.\quad x_z+2x_2<=8\\
 $$
 
 
-
-
+<br>
 $\hbar\frac
 {\partial \psi}
 {\partial t}
