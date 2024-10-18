@@ -86,8 +86,15 @@ subject to {
         demand[p,c] * Production[p] <= Stock[c];
 };
 ```
+<br>
+如下为dat文件代码
 
-
-
+```cpp
+Products={ "table " "chair "};
+Components={ "equipment ""materialA ""materialB "};
+demand=[[1,4,0],[2,0,4]];
+Profit=[2,3];
+Stock=[8,16,12];
+```
 
 
