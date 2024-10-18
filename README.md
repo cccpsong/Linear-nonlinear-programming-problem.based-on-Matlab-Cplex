@@ -62,3 +62,31 @@ else
     disp(sol.info)
 end
 ```
+<br>
+下面给出Ilog/Cplex代码，其文件见库中的Cplex1文件夹。<br>
+如下为mod文件代码
+```OPL
+{string} Products = ...;
+{string} Components = ...;
+
+float demand[Products][Components] = ...;
+float Profit[Products] = ...;
+float Stock[Components] = ...;
+dvar float+ Production[Products];
+
+maximize
+  sum( p in Products ) 
+    Profit[p] * Production[p];
+    
+subject to {
+  forall( c in Components )
+    ct:
+      sum( p in Products ) 
+        demand[p,c] * Production[p] <= Stock[c];
+};
+```
+
+
+
+
+
