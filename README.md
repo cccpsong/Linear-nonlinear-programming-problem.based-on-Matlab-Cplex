@@ -66,8 +66,9 @@ else
     disp(sol.info)
 end
 ```
-运行结果如下所示
-https://github.com/cccpsong/Linear-programming-problem.based-on-Matlab-Cplex/blob/main/Chapter_1_pic/matlab1.1.png
+运行结果如下所示<br>
+![Example Image](Chapter_1_pic/matlab1.1.png)
+
 <br>
 下面给出Ilog/Cplex代码，其文件见库中的Cplex1文件夹。<br>
 如下为mod文件代码
