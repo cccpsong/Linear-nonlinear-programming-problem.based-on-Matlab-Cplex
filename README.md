@@ -66,7 +66,7 @@ end
 下面给出Ilog/Cplex代码，其文件见库中的Cplex1文件夹。<br>
 如下为mod文件代码
 
-```
+```cpp
 {string} Products = ...;
 {string} Components = ...;
 
@@ -96,5 +96,5 @@ demand=[[1,4,0],[2,0,4]];
 Profit=[2,3];
 Stock=[8,16,12];
 ```
-
-
+<br>
+至此，第一题完毕
