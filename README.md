@@ -43,7 +43,8 @@ $$
 <br>
 很简单啊，不解释了，下面给出Matlab+Yalmip+Cplex代码，见库中名为Cplex1.md的文件
 <br>
-`
+
+```matlab
 clc
 x = sdpvar(1,2);
 Constraints = [x(1) + 2*x(2) <= 8 , 4*x(1) <= 16,4*x(2)<=12 , x(1)>=0 , x(2) >= 0];
@@ -60,4 +61,4 @@ else
     disp('求解失败')
     disp(sol.info)
 end
-`
+```
