@@ -18,9 +18,11 @@
 <br>
 建议自己写出他的数学模型，非常简单...
 <br>
+
 $$
-x_1, x_2 \geq 0
+\text{max } z = 2x_1 + 3x_2
 $$
+
 <br>
 Subject to:
 
