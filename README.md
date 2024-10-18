@@ -19,7 +19,7 @@
 建议自己写出他的数学模型，非常简单...
 <br>
 $$
-max \quad z = 2x_1 + 3x_2
+max z = 2x_1 + 3x_2
 $$
 
 Subject to:
@@ -38,12 +38,3 @@ x_1, x_2 \geq 0
 $$
 
 
-<br>
-$\hbar\frac
-{\partial \psi}
-{\partial t}
-= \frac{-\hbar^2}{2m} \left(\frac{\partial^2}
-{\partial x^2} + \frac{\partial^2}
-{\partial y^2}+\frac{\partial^2}
-{\partial z^2}
-\right) \psi + V \psi$
