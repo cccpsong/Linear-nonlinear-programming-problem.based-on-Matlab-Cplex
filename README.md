@@ -65,7 +65,7 @@ end
 <br>
 下面给出Ilog/Cplex代码，其文件见库中的Cplex1文件夹。<br>
 如下为mod文件代码
-```OPL
+```python
 {string} Products = ...;
 {string} Components = ...;
 
