@@ -46,10 +46,10 @@ $$
 
 ```matlab
 clc
-x = sdpvar(1,2);
-Constraints = [x(1) + 2*x(2) <= 8 , 4*x(1) <= 16,4*x(2)<=12 , x(1)>=0 , x(2) >= 0];
+x = sdpvar(1,2);                    %定义x1，x2
+Constraints = [x(1) + 2*x(2) <= 8 , 4*x(1) <= 16,4*x(2)<=12 , x(1)>=0 , x(2) >= 0];   %约束条件
 
-z = 2*x(1) + 3*x(2);
+z = 2*x(1) + 3*x(2);         %目标函数
 
 sol = optimize(Constraints , -z);
 if sol.problem == 0
