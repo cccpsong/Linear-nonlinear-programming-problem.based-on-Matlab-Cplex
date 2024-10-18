@@ -19,7 +19,7 @@
 建议自己写出他的数学模型，非常简单...
 <br>
 $$
-\text{max } z = 2x_1 + 3x_2
+{max } z = 2x_1 + 3x_2
 $$
 <br>
 Subject to:
