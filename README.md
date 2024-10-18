@@ -19,3 +19,12 @@ $$
 max z=2x_1+3x_2\\
 s.t.  x_z+2x_2<=8\\
 $$
+
+$\hbar\frac
+{\partial \psi}
+{\partial t}
+= \frac{-\hbar^2}{2m} \left(\frac{\partial^2}
+{\partial x^2} + \frac{\partial^2}
+{\partial y^2}+\frac{\partial^2}
+{\partial z^2}
+\right) \psi + V \psi$
