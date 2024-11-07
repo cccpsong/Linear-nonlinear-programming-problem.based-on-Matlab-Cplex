@@ -105,7 +105,7 @@ Stock=[8,16,12];
 ```
 <br>
 运行结果如下所示：<br>
-![Example Image](Chaper_2_nonlinear/POS.png)
+![Example Image]([Chaper_2_nonlinear/POS.png](https://github.com/cccpsong/Linear-nonlinear-programming-problem.based-on-Matlab-Cplex/blob/main/Chapter_1_pic/Cplex1.1.png))
 
 
 
