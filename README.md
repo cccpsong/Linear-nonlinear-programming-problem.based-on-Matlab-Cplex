@@ -107,7 +107,7 @@ Stock=[8,16,12];
 运行结果如下所示：<br>
 ![Example Image](Chapter_1_pic/Cplex1.1.png)
 <br>
-![Example Image](Chapter_1_pic/Cplex1.2.png)
+![Example Image](Chapter_1_pic/matlab1.1.png)
 <br>
 
 至此，第一题完毕--2024.10.18
