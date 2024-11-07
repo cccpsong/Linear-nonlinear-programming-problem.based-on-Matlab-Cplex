@@ -105,7 +105,7 @@ Stock=[8,16,12];
 ```
 <br>
 运行结果如下所示：<br>
-![Example Image](Chapter_1_pic/Cplex1.2.png)
+![Example Image](Chaper_2_nonlinear/POS.png)
 
 
 
