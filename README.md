@@ -144,7 +144,7 @@ Stock=[8,16,12];
     
 <br>
 <br>
-
+<div align="left">
 解：设航班 `SC981`、`CZ3422`、`MU5407`、`MF8726`、`CA342` 分别编号 `1, 2, 3, 4, 5`，它们计划降落时间分别为 ti ，\( i = 1, 2, 3, 4, 5 \)，即表的第5列给出计划降落的时间。在地面等待每分钟的成本是 Ci ，\(i= 1, 2, 3, 4, 5 \)，也即\[C1 = C2 = 30, C3 = 12, C4 = 65, C5 = 130.\]以每 10 分钟为一个时间段，即时间段 \( j = 1 \) 是 `10:00 ～ 10:10`，\( j = 2 \) 是 `10:10 ～ 10:20`。如果实际降落时间为 Tj ，\( j = 1, 2, ..., 6 \)，那么航班 \( i \) 在时间片 \( j \) 降落的成本是<br>
 
 
@@ -205,4 +205,132 @@ $$
 这是一个非线性规划求最小值问题，Cplex仅限于线性规划，可以考虑使用POS即粒子算法求解。
 <br>
 粒子算法原理如图所示：
+<br>
+
+![Example Image](Chaper_2_nonlinear/POS.png)
+
+<br>
+<br>
+<br>
+直接给出Matlab代码，如下所示
+<br>
+
+```matlab
+% PSO参数
+C1 = 2;               % 加速系数
+C2 = 2;
+PopG = 100;           % 迭代次数
+PopSize = 100;        % 种群规模
+D = 5;                % 维度，对应5个航班
+Popmax = 60;          % 种群最大值（对应最后一个时间片）
+Popmin = 10;          % 种群最小值（对应第一个时间片）
+Vmax = 0.15 * Popmax; % 速度上限
+Vmin = -Vmax;         % 速度下限
+Wini = 0.9;           % 惯性因子初始值
+Wend = 0.4;           % 惯性因子终止值
+
+% 等待成本系数
+costCoeffs = [30, 30, 12, 65, 130];
+% 航班计划降落时间
+schedule_time = [15, 16, 17, 17, 17];
+
+% 初始化粒子群
+Pop = Popmin + (Popmax - Popmin) * rand(PopSize, D); % 初始位置
+V = Vmin + (Vmax - Vmin) * rand(PopSize, D);         % 初始速度
+fitness = zeros(PopSize, 1);
+
+% 计算初始适应度值
+for j = 1:PopSize
+    fitness(j) = Objective(Pop(j, :), costCoeffs, schedule_time);
+end
+
+[Bestfitness, Bestindex] = min(fitness); % 第一代种群最佳适应度
+PBest = Pop;                             % 个体历史最佳位置
+GBest = Pop(Bestindex, :);               % 全局历史最佳位置
+fitnesspbest = fitness;                  % 个体历史最佳适应度
+fitnessgbest = Bestfitness;              % 全局历史最佳适应度
+
+% 迭代更新
+for i = 1:PopG
+    for j = 1:PopSize
+        % 更新速度和位置
+        W = (Wini - Wend) * (PopG - i) / PopG + Wend;
+        V(j, :) = W * V(j, :) + C1 * rand * (PBest(j, :) - Pop(j, :)) + C2 * rand * (GBest - Pop(j, :));
+
+        % 速度越界处理
+        V(j, V(j, :) > Vmax) = Vmax;
+        V(j, V(j, :) < Vmin) = Vmin;
+
+        % 位置更新
+        Pop(j, :) = Pop(j, :) + V(j, :);
+
+        % 位置越界处理
+        Pop(j, Pop(j, :) > Popmax) = Popmax;
+        Pop(j, Pop(j, :) < Popmin) = Popmin;
+
+        % 计算适应度
+        fitness(j) = Objective(Pop(j, :), costCoeffs, schedule_time);
+
+        % 更新个体历史最优
+        if fitness(j) < fitnesspbest(j)
+            PBest(j, :) = Pop(j, :);
+            fitnesspbest(j) = fitness(j);
+        end
+    end
+
+    % 更新全局历史最优
+    [currentBestfitness, currentBestindex] = min(fitnesspbest);
+    if currentBestfitness < fitnessgbest
+        GBest = PBest(currentBestindex, :);
+        fitnessgbest = currentBestfitness;
+    end
+
+    % 记录历代全局最佳适应度
+    result(i) = fitnessgbest;
+end
+
+% 输出结果
+disp('最优适应度:');
+disp(fitnessgbest);
+disp('最优解:');
+disp(GBest);
+
+% 绘制适应度曲线
+figure;
+semilogy(result);
+grid on;
+title('适应度曲线');
+xlabel('迭代次数');
+ylabel('适应度');
+
+% 目标函数定义
+function total_cost = Objective(actual_times, costCoeffs, schedule_time)
+    % 初始化总成本
+    total_cost = 0;
+    % 时间区间划分（每10分钟一个区间）
+    time_intervals = 10:10:60;
+
+    % 计算等待成本
+    for i = 1:length(actual_times)
+        wait_time = max(0, actual_times(i) - schedule_time(i)); % 等待时间为非负
+        total_cost = total_cost + costCoeffs(i) * wait_time;
+    end
+
+    % 添加容量限制的惩罚
+    for j = 1:length(time_intervals) - 1
+        % 统计每个10分钟区间内的降落航班数
+        flights_in_interval = sum(actual_times >= time_intervals(j) & actual_times < time_intervals(j + 1));
+        if flights_in_interval > 2
+            % 若超过2架，加入惩罚项
+            penalty = (flights_in_interval - 2) * 1000;
+            total_cost = total_cost + penalty;
+        end
+    end
+end
+```
+第二题到此结束，有空我在慢慢解释.../2024.11.07
+
+
+
+
 
