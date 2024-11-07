@@ -1,4 +1,4 @@
-线性规划问题，Matlab+Yalmip+Cplex，Ilog/Cplex，从入门开始....<br>
+线性/非线性规划问题，Matlab+Yalmip+Cplex，Ilog/Cplex，从入门开始....<br>
 ==
 <br>
 
@@ -106,6 +106,8 @@ Stock=[8,16,12];
 <br>
 运行结果如下所示：<br>
 ![Example Image](Chapter_1_pic/Cplex1.2.png)
+
+
 
 <br>
 
