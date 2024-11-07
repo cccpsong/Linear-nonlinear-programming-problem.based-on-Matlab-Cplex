@@ -329,8 +329,10 @@ function total_cost = Objective(actual_times, costCoeffs, schedule_time)
 end
 ```
 第二题到此结束，有空我在慢慢解释.../2024.11.07
+<br>
 
+![Example Image](Chaper_2_nonlinear/ansewe.png)
 
-
+<br>
 
 
