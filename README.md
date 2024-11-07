@@ -104,14 +104,19 @@ Profit=[2,3];
 Stock=[8,16,12];
 ```
 <br>
-运行结果如下所示：Chaper_2_nonlinear/POS.png<br>
+运行结果如下所示：<br>
 
-![Example Image](Chaper_2_nonlinear/POS.png)
-
-
-
-
+<div align="center">
+  <img src="Chapter_1_pic/Cplex1.1.png" alt="Example Image" width="400"/>
+</div>
 
 <br>
+
+<div align="center">
+  <img src="Chapter_1_pic/Cplex1.2.png" alt="Example Image" width="400"/>
+</div>
+
+<br>
+
 
 至此，第一题完毕--2024.10.18
