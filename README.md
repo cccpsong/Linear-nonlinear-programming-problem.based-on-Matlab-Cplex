@@ -104,12 +104,13 @@ Profit=[2,3];
 Stock=[8,16,12];
 ```
 <br>
-运行结果如下所示：Chaper_2_nonlinear/POS.png
+运行结果如下所示：Chaper_2_nonlinear/POS.png<br>
+
 ![Example Image](Chaper_2_nonlinear/POS.png)
 
 
 
-<br>
+
 
 <br>
 
